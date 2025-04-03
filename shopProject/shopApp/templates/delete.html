@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 삭제 중...</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f2f2f2; /* 회색빛 배경 */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+    <script>
+        // 페이지가 로드되면 자동으로 삭제 폼을 제출합니다.
+        window.onload = function() {
+            document.getElementById('deleteForm').submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>삭제 중...</h1>
+        <p>상품 정보를 삭제하고 있습니다. 잠시만 기다려주세요.</p>
+        <!-- CSRF 토큰이 포함된 폼이 자동 제출됨 -->
+        <form id="deleteForm" method="POST">
+            {% csrf_token %}
+        </form>
+    </div>
+</body>
+</html>
