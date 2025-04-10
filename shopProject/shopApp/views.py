@@ -15,7 +15,8 @@ def product_create(request):
         Product.objects.create(
             name=name,
             discript=discript,
-            price=price
+            price=price,
+            registrant=request.user
         )
         # 등록 후 목록 페이지(/shop)로 리다이렉트
         return redirect('/shop')
