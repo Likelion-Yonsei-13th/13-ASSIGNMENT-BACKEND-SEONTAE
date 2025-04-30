@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     <style>
+
+        .content-box {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        
         .content-box h1 {
             color: #dc3545;
             margin-bottom: 20px;
@@ -31,7 +41,7 @@
         <div class="content-box">
             <h1>삭제 권한 없음</h1>
             <p>본인의 게시물이 아니므로 삭제할 수 없습니다.</p>
-            <a class="back-link" href="/shop">목록으로</a>
+            <a class="back-link" href="/shop/{{ product.id }}">← 상세 페이지로</a>
         </div>
     {% endif %}
 {% endblock content %}
