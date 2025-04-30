@@ -1,78 +1,9 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>상품 등록</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2; /* 회색빛 배경 */
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 700px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-        .form-group input[type="text"],
-        .form-group input[type="number"],
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 14px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .form-group textarea {
-            resize: none;
-        }
-        .submit-btn {
-            display: inline-block;
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        .submit-btn:hover {
-            background-color: #0056b3;
-        }
-        .back-link {
-            margin-top: 20px;
-            display: inline-block;
-            color: #666;
-            text-decoration: none;
-        }
-        .back-link:hover {
-            color: #333;
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>상품 등록</h1>
-        <!-- 폼 제출 시 POST로 전송 -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>상품 등록</h1>
+    {% if user.is_authenticated %}
+        <!-- 로그인한 사용자: 상품 등록 폼을 표시 -->
         <form method="POST">
             {% csrf_token %}
             
@@ -94,11 +25,13 @@
             
             <button type="submit" class="submit-btn">저장</button>
         </form>
-        
-        <!-- 목록으로 돌아가는 링크 -->
-        <div>
-            <a class="back-link" href="/shop">← 목록으로</a>
-        </div>
+    {% else %}
+        <!-- 로그인하지 않은 사용자: 로그인 유도 메시지 -->
+        <p>로그인한 사용자만 상품을 등록할 수 있습니다. <a href="{% url 'login' %}">로그인</a></p>
+    {% endif %}
+    
+    <!-- 목록으로 돌아가는 링크 -->
+    <div>
+        <a class="back-link" href="/shop">← 목록으로</a>
     </div>
-</body>
-</html>
+{% endblock content %}

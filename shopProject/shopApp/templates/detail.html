@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ product.name }} 상세 정보</title>
+{% extends 'base.html' %}
+
+{% block content %}
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f2f2f2; /* 전체 배경 회색 */
-            margin: 0;
-            padding: 0;
-        }
-        .container {
+        .content-box {
             max-width: 700px;
             margin: 40px auto;
-            background-color: #fff; /* 카드 형태 흰색 배경 */
+            background-color: #fff;
             padding: 30px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             border-radius: 8px;
@@ -21,87 +13,71 @@
         .product-name {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
-        /* 경계선 스타일을 별도 클래스로 지정 */
         .divider {
             border: none;
             border-top: 1px solid #ddd;
-            margin: 10px 0 20px 0;
+            margin: 20px 0;
         }
         .product-price {
             font-size: 18px;
-            color: #28a745; /* 초록색 */
             margin-bottom: 20px;
         }
-        .product-price .icon {
-            margin-right: 6px;
-        }
         .product-discript {
+            font-size: 16px;
+            color: #555;
             margin-bottom: 30px;
-            line-height: 1.4;
-            color: #666;
+        }
+        .product-registrant {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #333;
         }
         .button-group {
-            display: flex;
-            gap: 10px; /* 버튼 간격 */
+            text-align: center;
         }
         .btn {
+            display: inline-block;
+            margin: 0 5px;
             padding: 10px 16px;
-            font-size: 14px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            color: #fff;
+            font-size: 14px;
         }
-        /* 수정 버튼(파란색) */
         .btn-edit {
             background-color: #007BFF;
+            color: #fff;
         }
-        .btn-edit:hover {
-            background-color: #0056b3;
-        }
-        /* 삭제 버튼(빨간색) */
         .btn-delete {
             background-color: #dc3545;
+            color: #fff;
         }
-        .btn-delete:hover {
-            background-color: #c82333;
-        }
-        /* 목록 버튼(회색) */
         .btn-list {
             background-color: #6c757d;
-        }
-        .btn-list:hover {
-            background-color: #5a6268;
+            color: #fff;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <!-- 상품명 -->
+
+    <div class="content-box">
         <div class="product-name">{{ product.name }}</div>
-
-        <!-- 경계선 -->
         <hr class="divider">
-
-        <!-- 가격(동전 아이콘 + 가격) -->
         <div class="product-price">
             <span class="icon">💰</span>
             {{ product.price }}원
         </div>
-
-        <!-- 상품 설명 -->
         <div class="product-discript">
             {{ product.discript }}
         </div>
-
-        <!-- 버튼들 -->
+        <!-- 신규: 상품 등록자 정보 -->
+        <div class="product-registrant">
+            상품 등록자: {{ product.registrant.username }}
+        </div>
         <div class="button-group">
             <button class="btn btn-edit" onclick="location.href='/shop/{{ product.id }}/edit'">수정</button>
             <button class="btn btn-delete" onclick="location.href='/shop/{{ product.id }}/delete'">삭제</button>
             <button class="btn btn-list" onclick="location.href='/shop'">목록으로</button>
         </div>
     </div>
-</body>
-</html>
+{% endblock content %}
